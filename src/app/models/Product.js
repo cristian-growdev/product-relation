@@ -5,20 +5,10 @@ class Product extends Model {
     super.init(
       {
         uid: {
-          primaryKey: true,
           allowNull: false,
+          primaryKey: true,
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUIDV4,
-        },
-        brand_uid: {
-          type: Sequelize.UUID,
-          references: {
-            model: 'brands',
-            key: 'uid',
-          },
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
-          allowNull: false,
         },
         name: {
           allowNull: false,
@@ -27,6 +17,17 @@ class Product extends Model {
         quantity: {
           allowNull: false,
           type: Sequelize.INTEGER,
+          defaultValue: 0,
+        },
+        brand_uid: {
+          type: Sequelize.UUID,
+          allowNull: false,
+          references: {
+            model: 'brands',
+            key: 'uid',
+          },
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
         },
       },
       {

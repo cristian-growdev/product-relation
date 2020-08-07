@@ -1,7 +1,20 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('products', {
-      uid: { type: Sequelize.UUID, allowNull: false, primaryKey: true },
+      uid: {
+        primaryKey: true,
+        allowNull: false,
+        type: Sequelize.UUID,
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      quantity: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: 0,
+      },
       brand_uid: {
         type: Sequelize.UUID,
         references: {
@@ -11,14 +24,6 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false,
-      },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      quantity: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -31,7 +36,7 @@ module.exports = {
     });
   },
 
-  down: async (queryInterface) => {
+  down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('products');
   },
 };

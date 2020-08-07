@@ -5,8 +5,8 @@ class Brand extends Model {
     super.init(
       {
         uid: {
-          primaryKey: true,
           allowNull: false,
+          primaryKey: true,
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUIDV4,
         },

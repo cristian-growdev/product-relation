@@ -1,25 +1,21 @@
 import { Router } from 'express';
 import cors from 'cors';
 
-import ProductController from './app/controllers/ProductController';
 import BrandController from './app/controllers/BrandController';
+import ProductController from './app/controllers/ProductController';
 
 const routes = Router();
 routes.use(cors());
 
 routes.get('/', (req, res) => res.json({ result: 'TEST-API' }));
 
-// ROUTES PARA USERS
-routes.post('/products', ProductController.store);
-routes.get('/products', ProductController.index);
-routes.get('/products/:uid', ProductController.show);
-routes.put('/products/:uid', ProductController.update);
-routes.delete('/products/:uid', ProductController.delete);
-
+// ROUTES PARA BRANDS
 routes.post('/brands', BrandController.store);
-routes.get('/brands', BrandController.index);
 routes.get('/brands/:uid', BrandController.show);
-routes.put('/brands/:uid', BrandController.update);
 routes.delete('/brands/:uid', BrandController.delete);
+
+// ROUTES PARA PRODUCTS
+routes.post('/products', ProductController.store);
+routes.get('/products/:uid', ProductController.show);
 
 export default routes;

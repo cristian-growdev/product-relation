@@ -2,10 +2,10 @@ import Sequelize from 'sequelize';
 import 'dotenv/config';
 import databaseConfig from '../config/database';
 
-import Product from '../app/models/Product';
 import Brand from '../app/models/Brand';
+import Product from '../app/models/Product';
 
-const models = [Product, Brand];
+const models = [Brand, Product];
 
 class DataBase {
   constructor() {

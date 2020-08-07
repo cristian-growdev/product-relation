@@ -1,17 +1,7 @@
 import Brand from '../models/Brand';
 
 class BrandController {
-  async index(req, res) {
-    try {
-      const brands = await Brand.findAll({
-        attributes: ['uid', 'name'],
-      });
-
-      return res.json({ brands });
-    } catch (error) {
-      return res.json({ error });
-    }
-  }
+  async index(req, res) { }
 
   async show(req, res) {
     try {
@@ -21,7 +11,7 @@ class BrandController {
 
       return res.json({ brand });
     } catch (error) {
-      return res.json({ error });
+      return res.json(error);
     }
   }
 
@@ -35,25 +25,11 @@ class BrandController {
         message: 'dados incorretos',
         error,
       };
-      return res.json(response);
+      return res.json({ response });
     }
   }
 
-  async update(req, res) {
-    try {
-      const { uid } = req.params;
-
-      const [updated] = await Brand.update(req.body, { where: { uid } });
-
-      if (!updated) {
-        throw Error('marca não encontrado');
-      }
-
-      return res.json({ updated });
-    } catch (error) {
-      return res.json({ error });
-    }
-  }
+  async update(req, res) { }
 
   async delete(req, res) {
     try {
@@ -62,12 +38,18 @@ class BrandController {
       const deleted = await Brand.destroy({ where: { uid } });
 
       if (!deleted) {
-        throw Error('marca não encontrado');
+        throw Error('marca não encontrada');
       }
 
-      return res.json({ deleted });
+      return res.json({
+        result: 'marca deletada com sucesso',
+      });
     } catch (error) {
-      return res.json({ error });
+      const response = {
+        message: 'dados incorretos',
+        error,
+      };
+      return res.json({ response });
     }
   }
 }
